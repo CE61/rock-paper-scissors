@@ -10,46 +10,59 @@ function computerPlay(){
         console.log("ERROR!");
     }
 }
-function game(){
-    var userScore = 0;
-    var cpuScore = 0;
 
-    function playRound(playerSelection, computerSelection){
-        function context(playerSelection){
-            return "You picked " + playerSelection + " and Computer picked " + computerSelection;
-        }
-        var pattern1 = new RegExp("Rock","i");
-        var pattern2 = new RegExp("Paper","i");
-        var pattern3 = new RegExp("Scissors","i");
-        var patternCPU = new RegExp(computerSelection, "i");
-        var checkChoice = pattern1.test(playerSelection) 
-            || pattern2.test(playerSelection) || pattern3.test(playerSelection);
+var userScore = 0;
+var cpuScore = 0;
+
+const rock = document.getElementById("Rock");
+const paper = document.getElementById("Paper");
+const scissors = document.getElementById("Scissors");
+        
+rock.addEventListener("click",()=>playRound("Rock",computerPlay()));
+paper.addEventListener("click",()=>playRound("Paper",computerPlay()));
+scissors.addEventListener("click",()=>playRound("Scissors",computerPlay()));
 
 
-        if(pattern1.test(playerSelection)&&pattern3.test(computerSelection)){
-            window.alert(context(playerSelection) + "\n" + "You win!");
-            userScore++;
-        }else if(pattern2.test(playerSelection)&&pattern1.test(computerSelection)){
-            window.alert(context(playerSelection) + "\n" + "You win!");
-            userScore++;
-        }else if(pattern3.test(playerSelection)&&pattern2.test(computerSelection)){
-            window.alert(context(playerSelection) + "\n" + "You win!");
-            userScore++;
-        }else if(patternCPU.test(playerSelection)){
-            window.alert(context(playerSelection) + "\n" + "Tie!");
-        }else if(checkChoice){
-            window.alert(context(playerSelection) + "\n" + "You lose!");
-            cpuScore++;
-        }else{
-            window.alert("That is not a valid choice!");
-        }
+function playRound(playerSelection, computerSelection){
+
+    function context(playerSelection){
+        return "You picked " + playerSelection + " and Computer picked " + computerSelection;
     }
 
-    for(let i = 0; i < 5; i++){
-        var userChoice = prompt("Rock, paper or scissors?");
-        playRound(userChoice,computerPlay());
-    }
-    alert("User Score: " + userScore + "\n" + "Computer Score: " + cpuScore);
+    const textPrompt = document.getElementById("textPrompt");
+    const scoreScreen = document.getElementById("scoreScreen");
 
+    if(playerSelection==="Rock"&&computerSelection==="Scissors"){
+        textPrompt.textContent = context(playerSelection) + ". You win!";
+        userScore++;
+        scoreScreen.textContent = "Player: "+userScore+"  |  Computer: "+cpuScore;
+
+    }else if(playerSelection==="Paper"&&computerSelection==="Rock"){
+        textPrompt.textContent = context(playerSelection) + ". You win!";
+        userScore++;
+        scoreScreen.textContent = "Player: "+userScore+"  |  Computer: "+cpuScore;
+    }else if(playerSelection==="Scissors"&&computerSelection==="Paper"){
+        textPrompt.textContent = context(playerSelection) + ". You win!";
+        userScore++;
+        scoreScreen.textContent = "Player: "+userScore+"  |  Computer: "+cpuScore;
+    }else if(playerSelection===computerSelection){
+        textPrompt.textContent = context(playerSelection) + ". Tie!";
+    }else{
+        textPrompt.textContent = context(playerSelection) + ". You lose!";
+        cpuScore++;
+        scoreScreen.textContent = "Player: "+userScore+"  |  Computer: "+cpuScore;
+    }
+
+    if(userScore==5){
+        textPrompt.textContent = ("You beat the computer! Congrats! Choose an option to play again!")
+        scoreScreen.textContent = "Player: "+userScore+"  |  Computer: "+cpuScore;
+        userScore = 0;
+        cpuScore = 0;
+    }else if(cpuScore==5){
+        textPrompt.textContent = ("You Lost. Choose an option to play again!")
+        scoreScreen.textContent = "Player: "+userScore+"  |  Computer: "+cpuScore;
+        userScore = 0;
+        cpuScore = 0;
+    }
+    
 }
-game();

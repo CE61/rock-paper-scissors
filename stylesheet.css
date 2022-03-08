@@ -1,0 +1,43 @@
+body{
+display:flex;
+flex-grow:1;
+background-color: lightgray;
+justify-content: center;
+}
+.modal{
+    display:flex;
+    flex-direction: column;
+    width: 800px;
+}
+#scoreScreen{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background-color: lightcoral;
+    font-size: 36px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    
+}
+#textPrompt{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background-color: lightblue;
+    font-size: 24px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+.inputSection{
+    display:flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: lightgreen;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+div.inputSection > button{
+    font-size: 24px;
+    font-weight: bold;
+    padding: 10px 10px 10px 10px;
+}
