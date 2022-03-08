@@ -47,6 +47,7 @@ function playRound(playerSelection, computerSelection){
         scoreScreen.textContent = "Player: "+userScore+"  |  Computer: "+cpuScore;
     }else if(playerSelection===computerSelection){
         textPrompt.textContent = context(playerSelection) + ". Tie!";
+        scoreScreen.textContent = "Player: "+userScore+"  |  Computer: "+cpuScore;
     }else{
         textPrompt.textContent = context(playerSelection) + ". You lose!";
         cpuScore++;
